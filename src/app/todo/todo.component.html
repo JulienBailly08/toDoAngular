@@ -1,14 +1,16 @@
 <h2 class="mt-4">Liste des taches</h2>
 
 <ul class="list-group">
-  <li class="list-group-item">{{toDoOne}}</li>
-  <li class="list-group-item" *ngFor="let todo of toDos, let i = index">{{ todo.todoName }}
-    <a href="">
-      <img [src]="todo.image">
-    </a>
-    <button class="btn btn-secondary" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)">En cours</button>
-    <button class="btn btn-success" [disabled]="!todo.todoStatus" (click)="onChangeStatus(i)">Terminée</button>
+    <li class="list-group-item" *ngFor="let todo of toDos, let i = index">
+    <div [ngClass]="{encours:todo.todoStatus,terminee:!todo.todoStatus}">
+      <a href="">
+        <img [src]="todo.image">
+      </a>{{ todo.todoName }}
+      <button class="btn btn-secondary" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)">En cours</button>
+      <button class="btn btn-success" [disabled]="!todo.todoStatus" (click)="onChangeStatus(i)">Terminée</button>
 
-    <p>Est réalisé : {{todo.todoStatus}}</p>
-  </li>
+      <input class="form-control"type="text" [(ngModel)]="todo.todoName">
+
+    </div>
+    </li>
 </ul>
