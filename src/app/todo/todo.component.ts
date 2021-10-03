@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from '../services/todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -7,47 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  today= new Date();
+  today: Date | undefined;
+  toDos: { todoName: string; todoStatus: boolean; image: string; isModif: boolean; }[] = [];
 
-  toDos = [
-    {
-      todoName: 'projet 1',
-      todoStatus: true,
-      image:"http://placehold.it/150",
-      isModif: false
-    },
-    {
-      todoName: 'projet 2',
-      todoStatus: false,
-      image:"http://placehold.it/150",
-      isModif: false
-    },
-    {
-      todoName: 'projet 3',
-      todoStatus: false,
-      image:"http://placehold.it/150",
-      isModif: false
-    },
-    {
-      todoName: 'projet 4',
-      todoStatus: true,
-      image:"http://placehold.it/150",
-      isModif: false
-    },
-  ];
-
-  constructor() { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
+    this.today = this.todoService.today;
+    this.toDos = this.todoService.toDos;
   }
-
   onChangeStatus(i:number){
-    this.toDos[i].todoStatus = !this.toDos[i].todoStatus;
+    this.todoService.onChangeStatus(i);
   }
 
   onModif(i:number){
-    this.toDos[i].isModif = !this.toDos[i].isModif;
+    this.todoService.onModif(i);
   }
-
 
 }
