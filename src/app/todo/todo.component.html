@@ -6,10 +6,15 @@
       <a href="">
         <img [src]="todo.image">
       </a>{{ todo.todoName }}
-      <button class="btn btn-secondary" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)">En cours</button>
-      <button class="btn btn-success" [disabled]="!todo.todoStatus" (click)="onChangeStatus(i)">Terminée</button>
+      <button class="btn btn-secondary m-1" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)">En cours</button>
+      <button class="btn btn-success m-1" [disabled]="!todo.todoStatus" (click)="onChangeStatus(i)">Terminée</button>
 
-      <input class="form-control"type="text" [(ngModel)]="todo.todoName">
+
+      <!--Action de modif-->
+      <button class="btn btn-danger m-1"  *ngIf="!todo.isModif" (click)="onModif(i)">Modifier</button>
+      <button class="btn btn-success m-1"  *ngIf="todo.isModif" (click)="onModif(i)">Modification terminée</button>
+
+      <input *ngIf="todo.isModif" class="form-control"type="text" [(ngModel)]="todo.todoName">
 
     </div>
     </li>

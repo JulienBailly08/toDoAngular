@@ -7,27 +7,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodoComponent implements OnInit {
 
-  toDoOne:string="Poulpe";
+
   toDos = [
     {
       todoName: 'projet 1',
       todoStatus: true,
-      image:"http://placehold.it/150"
+      image:"http://placehold.it/150",
+      isModif: false
     },
     {
       todoName: 'projet 2',
       todoStatus: false,
-      image:"http://placehold.it/150"
+      image:"http://placehold.it/150",
+      isModif: false
     },
     {
       todoName: 'projet 3',
       todoStatus: false,
-      image:"http://placehold.it/150"
+      image:"http://placehold.it/150",
+      isModif: false
     },
     {
       todoName: 'projet 4',
       todoStatus: true,
-      image:"http://placehold.it/150"
+      image:"http://placehold.it/150",
+      isModif: false
     },
   ];
 
@@ -39,5 +43,10 @@ export class TodoComponent implements OnInit {
   onChangeStatus(i:number){
     this.toDos[i].todoStatus = !this.toDos[i].todoStatus;
   }
+
+  onModif(i:number){
+    this.toDos[i].isModif = !this.toDos[i].isModif;
+  }
+
 
 }
