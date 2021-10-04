@@ -1,1 +1,10 @@
-<p>single-todo works!</p>
+<p *ngIf="!todo">{{error}}</p>
+
+<div *ngIf="todo" class="card" style="width: 18rem;">
+  <img [src]="todo.image" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{todo.todoName}}</h5>
+    <p class="card-text">Statut en cours : {{todo.todoStatus}}</p>
+    <a routerLink="/todos" class="btn btn-secondary">retour à la liste des projets</a>
+  </div>
+</div>
