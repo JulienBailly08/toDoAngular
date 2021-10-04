@@ -5,14 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class TodoService {
 
-  today= new Date();
+  today:any;
   toDos:any;
 
 
-
   constructor(){
-    this.toDos = new Promise((resolve, reject) =>{
 
+    this.today = Promise.resolve(new Date()); // reject non utilisé pour fonction plus simle à écrire
+
+
+    this.toDos = new Promise((resolve, reject) =>{
       const data:any = [
         {
           todoName: 'projet 1',

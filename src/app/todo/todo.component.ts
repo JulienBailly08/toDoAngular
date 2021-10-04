@@ -9,13 +9,17 @@ import { TodoService } from '../services/todo.service';
 })
 export class TodoComponent implements OnInit {
 
-  today: Date | undefined;
+  today: any;
   toDos: any;
 
   constructor(private todoService: TodoService, private router: Router) { }
 
   ngOnInit(): void {
-    this.today = this.todoService.today;
+
+    this.todoService.today.then((dateReceived: any)=>{
+      this.today=dateReceived;
+    })
+
     this.todoService.toDos
     .then((receiveDatas:any)=>{ //recuperation de la promesse et injection au sein de toDos attendu
       this.toDos=receiveDatas;
