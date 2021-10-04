@@ -4,7 +4,7 @@
     <li class="list-group-item" *ngFor="let todo of toDos, let i = index">
     <div [ngClass]="{encours:todo.todoStatus,terminee:!todo.todoStatus}">
       <a href="">
-        <img [src]="todo.image">
+        <img [src]="todo.image+i">
       </a>{{ todo.todoName | uppercase}}
       <button class="btn btn-secondary m-1" [disabled]="todo.todoStatus" (click)="onChangeStatus(i)">En cours</button>
       <button class="btn btn-success m-1" [disabled]="!todo.todoStatus" (click)="onChangeStatus(i)">Terminée</button>
