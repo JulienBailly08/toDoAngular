@@ -10,13 +10,19 @@ import { TodoService } from '../services/todo.service';
 export class TodoComponent implements OnInit {
 
   today: Date | undefined;
-  toDos: { todoName: string; todoStatus: boolean; image: string; isModif: boolean; description:string; }[] = [];
+  toDos: any;
 
   constructor(private todoService: TodoService, private router: Router) { }
 
   ngOnInit(): void {
     this.today = this.todoService.today;
-    this.toDos = this.todoService.toDos;
+    this.todoService.toDos
+    .then((receiveDatas:any)=>{ //recuperation de la promesse et injection au sein de toDos attendu
+      this.toDos=receiveDatas;
+    })
+    .catch((error: string)=>{
+      console.log("Erreur: "+error);
+    });
   }
   onChangeStatus(i:number){
     this.todoService.onChangeStatus(i);

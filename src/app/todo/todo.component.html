@@ -1,7 +1,8 @@
 <h2 [ngStyle]="{color:'blue'}" class="mt-4">Liste des taches</h2>
 <p>Nous sommes le {{today | date:'EEEE dd MMMM yyyy'}}</p>
 <ul class="list-group">
-    <li class="list-group-item" *ngFor="let todo of toDos, let i = index">
+
+  <li class="list-group-item" *ngFor="let todo of toDos ,let i = index">
     <div [ngClass]="{encours:todo.todoStatus,terminee:!todo.todoStatus}">
       <a href="">
         <img [src]="todo.image+i">
@@ -11,13 +12,13 @@
 
 
       <!--Action de modif-->
-      <button class="btn btn-danger m-1"  *ngIf="!todo.isModif" (click)="onModif(i)">Modifier</button>
-      <button class="btn btn-success m-1"  *ngIf="todo.isModif" (click)="onModif(i)">Modification terminée</button>
+      <button class="btn btn-danger m-1" *ngIf="!todo.isModif" (click)="onModif(i)">Modifier</button>
+      <button class="btn btn-success m-1" *ngIf="todo.isModif" (click)="onModif(i)">Modification terminée</button>
 
-      <button class="btn btn-warning m-1"   (click)="onView(i)">En savoir +</button>
+      <button class="btn btn-warning m-1" (click)="onView(i)">En savoir +</button>
 
-      <input *ngIf="todo.isModif" class="form-control"type="text" [(ngModel)]="todo.todoName">
+      <input *ngIf="todo.isModif" class="form-control" type="text" [(ngModel)]="todo.todoName">
 
     </div>
-    </li>
+  </li>
 </ul>
