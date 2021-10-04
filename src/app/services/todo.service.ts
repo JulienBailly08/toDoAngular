@@ -16,7 +16,7 @@ export class TodoService {
 
 
     this.toDos = new Promise((resolve, reject) =>{
-      const data:any = [
+      const data = [
         {
           todoName: 'projet 1',
           todoStatus: true,
