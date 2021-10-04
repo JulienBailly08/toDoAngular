@@ -7,6 +7,7 @@ export class TodoService {
 
   today:any;
   toDos:any;
+  todoSlice:any;//permet de récupérer un tableau d'objet depuis la promesse pour alimenter les méthodes
 
 
   constructor(){
@@ -55,6 +56,7 @@ export class TodoService {
       ];
       if(data.length){
          setTimeout(() => {
+           this.todoSlice=data;
           resolve(data);
         }, 1500);
       }else{
@@ -66,16 +68,16 @@ export class TodoService {
 
 
   onChangeStatus(i:number){
-    this.toDos[i].todoStatus = !this.toDos[i].todoStatus;
+    this.todoSlice[i].todoStatus = !this.todoSlice[i].todoStatus;
   }
 
   onModif(i:number){
-    this.toDos[i].isModif = !this.toDos[i].isModif;
+    this.todoSlice[i].isModif = !this.todoSlice[i].isModif;
   }
 
   getTodo(i:number){
-    if(this.toDos[i]){
-      return this.toDos[i];
+    if(this.todoSlice[i]){
+      return this.todoSlice[i];
     }
     return false;
   }
