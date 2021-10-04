@@ -26,6 +26,23 @@ export class HeaderComponent implements OnInit {
       }, 4000);
     });
 
+    const nombresPairs = new Observable((observer)=>{
+      let value =0;
+      const interval = setInterval(()=>{
+        if(value%2 ==0){
+          observer.next(value);
+        }
+        value++;
+      },500);
+      return ()=>clearInterval(interval);
+    });
+
+    nombresPairs.subscribe(
+      (value)=>{
+        console.log("nombre pair :"+value);
+      }
+    );
+
     saluation.subscribe(
       (value)=>{
         console.log("value :"+value);
