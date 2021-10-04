@@ -10,13 +10,21 @@ import { registerLocaleData } from '@angular/common';
 
 import { LOCALE_ID, NgModule } from '@angular/core';
 import localeFr from '@angular/common/locales/fr';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { SingleTodoComponent } from './single-todo/single-todo.component';
+import { ContactComponent } from './contact/contact.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent,
+    NotFoundComponent,
+    SingleTodoComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
