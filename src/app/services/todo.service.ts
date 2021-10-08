@@ -61,8 +61,8 @@ export class TodoService {
   }
 
   addTodo(todo:Todo):void{
-    this.toDos.push(todo);
-    this.todosSubject.next(this.toDos);
+    this.toDos.unshift(todo);
+    this.emettreToDos();
   }
 
   emettreToDos():void{

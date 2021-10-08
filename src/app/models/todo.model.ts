@@ -1,7 +1,7 @@
 export class Todo {
   todoName!: string;
-  todoStatus!: boolean;
+  todoStatus: boolean = true;
   description!: string;
-  isModif= false;
-  image = "http://placeimg.com/300/300/tech/sepia";
+  isModif: boolean= false;
+  image:string = "http://placeimg.com/300/300/tech/sepia";
 }
