@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Todo } from '../models/todo.model';
 
 @Injectable({
   providedIn: 'root' // permet l'injection du service au niveau de l'ensemble de l'application => peut etre modifié pour injection dans module unique
@@ -7,7 +8,7 @@ import { Subject } from 'rxjs';
 export class TodoService {
 
   today: any;
-  toDos: any;
+  toDos!: Todo[];
   todosSubject = new Subject<any[]>();
 
 
@@ -59,7 +60,12 @@ export class TodoService {
     }, 3000);
   }
 
-  emettreToDos(){
+  addTodo(todo:Todo):void{
+    this.toDos.push(todo);
+    this.todosSubject.next(this.toDos);
+  }
+
+  emettreToDos():void{
     this.todosSubject.next(this.toDos);
   }
 
