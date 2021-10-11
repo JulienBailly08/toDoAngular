@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -20,9 +21,17 @@ export class UsersService {
       dateBirth:'08-03-1979'
   }];
 
-  constructor() { }
+  usersSub= new Subject<User[]>();
+
+  constructor() {
+   }
+
+  emitUsers():void{
+    this.usersSub.next(this.users);
+  }
 
   addUser(user:User):void{
     this.users.push(user);
+    this.emitUsers();
   }
 }

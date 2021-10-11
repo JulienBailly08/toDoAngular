@@ -9,7 +9,7 @@ export class TodoService {
 
   today: any;
   toDos!: Todo[];
-  todosSubject = new Subject<any[]>();
+  todosSubject = new Subject<Todo[]>();
 
 
 

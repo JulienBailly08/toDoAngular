@@ -25,10 +25,10 @@ export class AddUserComponent implements OnInit {
 
   initUserForm() {
     this.userForm = this.formBuilder.group({
-      firstname: this.formBuilder.control("", [Validators.required, Validators.minLength(5)]),
-      lastname: this.formBuilder.control("", [Validators.required, Validators.minLength(5)]),
+      firstname: this.formBuilder.control("", [Validators.required, Validators.minLength(3)]),
+      lastname: this.formBuilder.control("", [Validators.required, Validators.minLength(3)]),
       email: this.formBuilder.control("", [Validators.required, Validators.email, Validators.minLength(5)]),
-      description: this.formBuilder.control("", [Validators.required, Validators.minLength(15)]),
+      description: this.formBuilder.control("", [Validators.required, Validators.minLength(10)]),
       dateBirth: this.formBuilder.control("", Validators.required),
       address: this.formBuilder.group({
         street: this.formBuilder.control("", Validators.required),
