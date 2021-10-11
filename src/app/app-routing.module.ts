@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:'contact', component: ContactComponent},
   {path:'single-todo/:id', component: SingleTodoComponent},
   {path:'add-todo', component: AddTodoComponent},
-  {path:'user', component: UsersComponent},
+  {path:'users', component: UsersComponent},
   {path:'add-user', component: AddUserComponent},
   {path:'**',pathMatch:'full', redirectTo:'not-found'},
 ];

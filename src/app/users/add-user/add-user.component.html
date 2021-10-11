@@ -47,7 +47,7 @@
         <label for="dateBirth">Date de naissance</label>
         <input class="form-control m-1" id="dateBirth" type="date" formControlName="dateBirth">
       </div>
-      <button type="submit" class="mt-4 btn btn-success btn-lg">Ajouter utilisateur</button>
+      <button type="submit" [disabled]="userForm.invalid" class="mt-4 btn btn-success btn-lg">Ajouter utilisateur</button>
     </form>
   </div>
 </div>
