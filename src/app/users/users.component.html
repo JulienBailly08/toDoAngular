@@ -1,1 +1,18 @@
 <button class="btn btn-success mt-2" routerLink="/add-user">Ajouter un utilisateur</button>
+
+<div class="row justify-content-around">
+  <div class="col-4 " *ngFor="let user of users">
+    <div class="card  mt-4" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{user.firstname |titlecase}} {{user.lastname |uppercase}}</h5>
+        <h6 class="card-title">{{user.dateBirth}}</h6>
+        <p class="card-text">Contact :<br> {{user.email}}</p>
+        <hr>
+        <p class="card-text">Adresse :<br> {{user.address.street}} <br> {{user.address.zip}} - {{user.address.city}} <br> {{user.address.state}}</p>
+        <hr>
+        <p class="card-text">{{user.description}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
