@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Todo } from '../models/todo.model';
@@ -13,56 +14,17 @@ export class TodoService {
 
 
 
-  constructor() {
+  constructor(private httpClient:HttpClient) {
 
     this.today = Promise.resolve(new Date()); // reject non utilisé pour fonction plus simle à écrire
 
-    setTimeout(() => {
-      this.toDos = [
-        {
-          todoName: 'projet 1',
-          todoStatus: true,
-          image: "http://placeimg.com/300/300/tech/sepia",
-          isModif: false,
-          description: "Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 \
-          เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ \
-          แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง"
-        },
-        {
-          todoName: 'projet 2',
-          todoStatus: false,
-          image: "http://placeimg.com/300/300/tech/sepia",
-          isModif: false,
-          description: "Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 \
-          เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ \
-          แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง"
-        },
-        {
-          todoName: 'projet 3',
-          todoStatus: false,
-          image: "http://placeimg.com/300/300/tech/sepia",
-          isModif: false,
-          description: "Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 \
-          เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ \
-          แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง"
-        },
-        {
-          todoName: 'projet 4',
-          todoStatus: true,
-          image: "http://placeimg.com/300/300/tech/sepia",
-          isModif: false,
-          description: "Lorem Ipsum คือ เนื้อหาจำลองแบบเรียบๆ ที่ใช้กันในธุรกิจงานพิมพ์หรืองานเรียงพิมพ์ มันได้กลายมาเป็นเนื้อหาจำลองมาตรฐานของธุรกิจดังกล่าวมาตั้งแต่ศตวรรษที่ 16 \
-          เมื่อเครื่องพิมพ์โนเนมเครื่องหนึ่งนำรางตัวพิมพ์มาสลับสับตำแหน่งตัวอักษรเพื่อทำหนังสือตัวอย่าง Lorem Ipsum อยู่ยงคงกระพันมาไม่ใช่แค่เพียงห้าศตวรรษ \
-          แต่อยู่มาจนถึงยุคที่พลิกโฉมเข้าสู่งานเรียงพิมพ์ด้วยวิธีทางอิเล็กทรอนิกส์ และยังคงสภาพเดิมไว้อย่างไม่มีการเปลี่ยนแปลง"
-        },
-      ];
-      this.emettreToDos();
-    }, 3000);
+    this.getTodosFromServer();
   }
 
   addTodo(todo:Todo):void{
     this.toDos.unshift(todo);
     this.emettreToDos();
+    this.saveTodosToServer();
   }
 
   emettreToDos():void{
@@ -73,11 +35,13 @@ export class TodoService {
   onChangeStatus(i: number) {
     this.toDos[i].todoStatus = !this.toDos[i].todoStatus;
     this.emettreToDos();
+    this.saveTodosToServer();
   }
 
   onModif(i: number) {
     this.toDos[i].isModif = !this.toDos[i].isModif;
     this.emettreToDos();
+    this.saveTodosToServer();
   }
 
   getTodo(i: number) {
@@ -85,6 +49,34 @@ export class TodoService {
       return this.toDos[i];
     }
     return false;
+  }
+
+  saveTodosToServer():void{
+    this.httpClient.put("https://todo-list-app-d1f13-default-rtdb.europe-west1.firebasedatabase.app/todos.json",this.toDos)
+    .subscribe(
+      ()=>{
+        console.log("Ok pour envoie vers serveur");
+      },
+      (error)=>{
+        console.log("Erreur d'upload :"+error);
+      }
+    )
+  }
+
+  getTodosFromServer(){
+    this.httpClient.get<Todo[]>("https://todo-list-app-d1f13-default-rtdb.europe-west1.firebasedatabase.app/todos.json")
+    .subscribe(
+      (todoRecup: Todo[])=>{
+        this.toDos = todoRecup;
+        this.emettreToDos();
+      },
+      (error)=>{
+        console.log("Erreur de récupération des données :"+error);
+      },
+      ()=>{
+        console.log("Récupération des données terminées");
+      }
+    )
   }
 
 

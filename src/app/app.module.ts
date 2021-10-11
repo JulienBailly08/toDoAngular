@@ -7,6 +7,7 @@ import { TodoComponent } from './todo/todo.component';
 import { HeaderComponent } from './header/header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { LOCALE_ID, NgModule } from '@angular/core';
 import localeFr from '@angular/common/locales/fr';
@@ -36,7 +37,8 @@ registerLocaleData(localeFr, 'fr');
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [{ provide: LOCALE_ID, useValue: "fr-FR" }],
   bootstrap: [AppComponent]
