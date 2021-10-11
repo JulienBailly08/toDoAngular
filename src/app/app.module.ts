@@ -15,6 +15,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SingleTodoComponent } from './single-todo/single-todo.component';
 import { ContactComponent } from './contact/contact.component';
 import { AddTodoComponent } from './todo/add-todo/add-todo.component';
+import { UsersComponent } from './users/users.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
@@ -26,7 +28,9 @@ registerLocaleData(localeFr, 'fr');
     NotFoundComponent,
     SingleTodoComponent,
     ContactComponent,
-    AddTodoComponent
+    AddTodoComponent,
+    UsersComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

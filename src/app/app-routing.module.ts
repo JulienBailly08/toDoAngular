@@ -6,6 +6,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { SingleTodoComponent } from './single-todo/single-todo.component';
 import { AddTodoComponent } from './todo/add-todo/add-todo.component';
 import { TodoComponent } from './todo/todo.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path:'contact', component: ContactComponent},
   {path:'single-todo/:id', component: SingleTodoComponent},
   {path:'add-todo', component: AddTodoComponent},
+  {path:'user', component: UsersComponent},
+  {path:'add-user', component: AddUserComponent},
   {path:'**',pathMatch:'full', redirectTo:'not-found'},
 ];
 
