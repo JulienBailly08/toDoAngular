@@ -6,6 +6,7 @@
       <div class="card-body">
         <h5 class="card-title">{{user.firstname |titlecase}} {{user.lastname |uppercase}}</h5>
         <h6 class="card-title">{{user.dateBirth}}</h6>
+        <p>Alias : <strong *ngFor="let aliase of user.aliases">{{aliase |titlecase}}, </strong></p>
         <p class="card-text">Contact :<br> {{user.email}}</p>
         <hr>
         <p class="card-text">Adresse :<br> {{user.address.street}} <br> {{user.address.zip}} - {{user.address.city}} <br> {{user.address.state}}</p>
